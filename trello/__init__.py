@@ -780,9 +780,16 @@ class Card(object):
 
         :title: due a datetime object
         """
-        datestr = due.strftime('%Y-%m-%d')
+        if due is not None:
+            datestr = due.strftime('%Y-%m-%d')
+        else:
+            datestr = ''
         self._set_remote_attribute('due', datestr)
         self.due = datestr
+
+    def set_labels(self, labels):
+        self._set_remote_attribute('labels', labels)
+        self.labels = labels
 
     def set_closed(self, closed):
         self._set_remote_attribute('closed', closed)
